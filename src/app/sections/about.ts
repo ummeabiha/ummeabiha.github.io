@@ -16,7 +16,7 @@ import { highlights, profile, stats } from '../data/portfolio.data';
             <p>{{ p.intro }}</p>
             <div class="meta">
               <span><app-icon name="pin" [size]="16" /> {{ p.location }}</span>
-              <span><app-icon name="languages" [size]="16" /> Urdu · English · Chinese</span>
+              <span><app-icon name="languages" [size]="16" /> {{ langs }}</span>
             </div>
           </div>
 
@@ -63,6 +63,7 @@ import { highlights, profile, stats } from '../data/portfolio.data';
 })
 export class About {
   p = profile;
+  langs = profile.languages.map(l => l.split(' · ')[0]).join(' · ');
   stats = stats;
   highlights = highlights;
 }
