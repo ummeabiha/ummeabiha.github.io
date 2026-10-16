@@ -1,0 +1,104 @@
+:root {
+  --bg: #070b19;
+  --bg-2: #0a1022;
+  --surface: rgba(255, 255, 255, 0.035);
+  --surface-solid: #0e1530;
+  --border: rgba(160, 170, 255, 0.11);
+  --border-strong: rgba(160, 170, 255, 0.22);
+  --text: #e8ebf7;
+  --muted: #9aa3c7;
+  --faint: #6d769c;
+  --primary: #7c6cff;
+  --primary-2: #5b8cff;
+  --accent: #2ee6d6;
+  --grad: linear-gradient(135deg, #8b7bff 0%, #5b8cff 50%, #2ee6d6 100%);
+  --radius: 18px;
+  --shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+::selection { background: rgba(124, 108, 255, 0.4); }
+
+.container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+.mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+.grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+section.block { padding: 96px 0; position: relative; }
+
+/* Section heading */
+.sec-head { text-align: center; margin-bottom: 52px; }
+.sec-head .pill { margin-bottom: 14px; }
+.sec-head h2 { font-size: clamp(1.8rem, 3.6vw, 2.5rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; }
+.sec-head .line { width: 56px; height: 3px; border-radius: 3px; background: var(--grad); margin: 16px auto 0; }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.74rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #b6adff; background: rgba(124, 108, 255, 0.12);
+  border: 1px solid rgba(124, 108, 255, 0.25); padding: 6px 12px; border-radius: 999px;
+}
+
+/* Glass card */
+.glass {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(8px);
+  transition: border-color .25s, transform .25s, background .25s;
+}
+.glass.hover:hover { border-color: var(--border-strong); transform: translateY(-4px); background: rgba(255,255,255,.05); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  padding: 13px 22px; border-radius: 12px; font-weight: 600; font-size: 0.95rem;
+  transition: transform .2s, box-shadow .2s, background .2s, border-color .2s;
+  white-space: nowrap;
+}
+.btn-primary { background: var(--grad); color: #0b0f22; box-shadow: 0 10px 30px -10px rgba(91, 140, 255, .7); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -12px rgba(91, 140, 255, .9); }
+.btn-ghost { border: 1px solid var(--border-strong); background: rgba(255,255,255,.03); }
+.btn-ghost:hover { border-color: var(--primary); background: rgba(124,108,255,.08); }
+.btn-sm { padding: 9px 16px; font-size: .88rem; border-radius: 10px; }
+
+.icon-tile {
+  display: grid; place-items: center; flex: none;
+  width: 46px; height: 46px; border-radius: 13px;
+  background: linear-gradient(135deg, rgba(124,108,255,.22), rgba(46,230,214,.12));
+  border: 1px solid rgba(124,108,255,.28); color: #c9c2ff;
+}
+
+.tag {
+  font-family: 'JetBrains Mono', monospace; font-size: .72rem;
+  padding: 4px 9px; border-radius: 7px; color: var(--muted);
+  background: rgba(255,255,255,.04); border: 1px solid var(--border);
+}
+
+/* Scroll reveal */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation: none !important; }
+}
+
+@media (max-width: 720px) {
+  section.block { padding: 68px 0; }
+  .container { padding: 0 16px; }
+  .sec-head { margin-bottom: 36px; }
+}
